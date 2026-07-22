@@ -25,3 +25,4 @@ plugins:
 
 # Cart settings
 cart_title: "Shopping Cart"
+empty_cart_text: "Your cart is empty"
