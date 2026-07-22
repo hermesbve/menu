@@ -310,7 +310,7 @@
       const entries = Object.entries(cart).filter(([_, v]) => v.qty > 0);
 
       if (entries.length === 0) {
-        itemsEl.innerHTML = '<div class="cart-empty"><i class="fa-solid fa-cart-shopping"></i><span id="emptyCartText"></span></div>';
+        itemsEl.innerHTML = `<div class="cart-empty"><i class="fa-solid fa-cart-shopping"></i>${emptyCartText}</div>`;
         totalEl.textContent = '€0.00';
         updateBadge();
         return;
@@ -435,7 +435,6 @@
     }
 
     // ── Init ───────────────────────────────────────────────────────
-    document.getElementById('emptyCartText').textContent = emptyCartText;
     renderTabs();
     renderContent();
     updateBadge();
