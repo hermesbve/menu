@@ -1,3 +1,14 @@
+# Menu sections & items
+# Set `disabled: true` on a section or item to temporarily hide it.
+#
+# Examples:
+#   - section: Unavailable Section
+#     disabled: true           ← hides the entire section
+#     ...
+#       - name: Unavailable Item
+#         disabled: true       ← hides just this item
+#         ...
+
 - section: Beer
   id: beer
   icon: ti ti-beer
