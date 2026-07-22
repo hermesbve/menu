@@ -6,7 +6,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Menu</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
   <style>
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
@@ -221,7 +221,7 @@
   <header class="top-bar">
     <span class="logo">menu</span>
     <button class="cart-btn" id="cartBtn" aria-label="Shopping cart">
-      <i class="ti ti-shopping-cart"></i>
+      <i class="fa-solid fa-cart-shopping"></i>
       <span class="cart-badge" id="cartBadge">0</span>
     </button>
   </header>
@@ -242,7 +242,7 @@
     <div class="cart-handle"></div>
     <div class="cart-header">
       <h2>Shopping Cart</h2>
-      <button class="cart-close" id="cartClose"><i class="ti ti-x"></i></button>
+      <button class="cart-close" id="cartClose"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <div class="cart-total" id="cartTotal">€0.00</div>
     <div id="cartItems"></div>
@@ -292,9 +292,9 @@
                 <div class="item-desc">${item.description || ''}</div>
               </div>
               <div class="item-actions">
-                <button class="qty-minus" onclick="event.stopPropagation();adjust('${key}',-1)"><i class="ti ti-minus"></i></button>
+                <button class="qty-minus" onclick="event.stopPropagation();adjust('${key}',-1)"><i class="fa-solid fa-minus"></i></button>
                 <span class="qty" id="qty-${CSS.escape(key.replace(/::/g,'-'))}">${qty}</span>
-                <button class="qty-plus" onclick="event.stopPropagation();adjust('${key}',1)"><i class="ti ti-plus"></i></button>
+                <button class="qty-plus" onclick="event.stopPropagation();adjust('${key}',1)"><i class="fa-solid fa-plus"></i></button>
               </div>
             </div>
           `;
@@ -308,7 +308,7 @@
       const entries = Object.entries(cart).filter(([_, v]) => v.qty > 0);
 
       if (entries.length === 0) {
-        itemsEl.innerHTML = '<div class="cart-empty"><i class="ti ti-shopping-cart-off"></i>Your cart is empty</div>';
+        itemsEl.innerHTML = '<div class="cart-empty"><i class="fa-solid fa-cart-shopping-off"></i>Your cart is empty</div>';
         totalEl.textContent = '€0.00';
         updateBadge();
         return;
@@ -335,9 +335,9 @@
                 <div class="item-price" style="font-size:0.73rem">€${item.price.toFixed(2)} each</div>
               </div>
               <div class="item-actions">
-                <button class="qty-minus" onclick="event.stopPropagation();adjust('${item.key}',-1)"><i class="ti ti-minus"></i></button>
+                <button class="qty-minus" onclick="event.stopPropagation();adjust('${item.key}',-1)"><i class="fa-solid fa-minus"></i></button>
                 <span class="qty">${item.qty}</span>
-                <button class="qty-plus" onclick="event.stopPropagation();adjust('${item.key}',1)"><i class="ti ti-plus"></i></button>
+                <button class="qty-plus" onclick="event.stopPropagation();adjust('${item.key}',1)"><i class="fa-solid fa-plus"></i></button>
               </div>
               <div class="cart-subtotal">€${(item.price * item.qty).toFixed(2)}</div>
             </div>
