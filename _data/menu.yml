@@ -2,6 +2,15 @@
 # Sections and items for the digital menu
 
 sections:
+  - section: "Soup"
+    id: "soup"
+    icon: "fa-solid fa-bowl-food"
+    items:
+      - name: "Soup of the day"
+        price: 5.00
+        icon: "fa-solid fa-bowl-food"
+        description: "Ask your server for today's selection"
+
   - section: "Beer"
     id: "beer"
     icon: "fa-solid fa-beer"
@@ -115,3 +124,18 @@ sections:
       - name: "Hot Chocolate"
         price: 3.50
         description: "Rich Belgian hot chocolate with cream"
+
+  - section: "Snacks"
+    id: "snacks"
+    icon: "fa-solid fa-utensils"
+    items:
+      - name: "Paprika Chips"
+        price: 3.00
+        icon: "fa-solid fa-utensils"
+        description: "Crispy potato chips with paprika seasoning"
+      - name: "Naturel Chips"
+        price: 3.00
+        description: "Classic salted potato chips"
+      - name: "BBQ Chips"
+        price: 3.00
+        description: "Smoky barbecue flavored potato chips"
