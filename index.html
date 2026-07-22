@@ -294,9 +294,9 @@
                 <div class="item-desc">${item.description || ''}</div>
               </div>
               <div class="item-actions">
-                <button class="qty-minus" onclick="event.stopPropagation();adjust('${key}',-1)"><i class="fa-solid fa-minus"></i></button>
+                <button class="qty-minus" id="btn-minus-${CSS.escape(key.replace(/::/g,'-'))}" onclick="event.stopPropagation();adjust('${key}',-1)" style="${qty === 0 ? 'display:none' : ''}"><i class="fa-solid fa-minus"></i></button>
                 <span class="qty" id="qty-${CSS.escape(key.replace(/::/g,'-'))}">${qty}</span>
-                <button class="qty-plus" onclick="event.stopPropagation();adjust('${key}',1)"><i class="fa-solid fa-plus"></i></button>
+                <button class="qty-plus" id="btn-plus-${CSS.escape(key.replace(/::/g,'-'))}" onclick="event.stopPropagation();adjust('${key}',1)" style="${qty >= 24 ? 'display:none' : ''}"><i class="fa-solid fa-plus"></i></button>
               </div>
             </div>
           `;
@@ -336,9 +336,9 @@
                 <div class="item-price" style="font-size:0.73rem">€${item.price.toFixed(2)}</div>
               </div>
               <div class="item-actions">
-                <button class="qty-minus" onclick="event.stopPropagation();adjust('${item.key}',-1)"><i class="fa-solid fa-minus"></i></button>
+                <button class="qty-minus" onclick="event.stopPropagation();adjust('${item.key}',-1)" style="${item.qty <= 0 ? 'display:none' : ''}"><i class="fa-solid fa-minus"></i></button>
                 <span class="qty">${item.qty}</span>
-                <button class="qty-plus" onclick="event.stopPropagation();adjust('${item.key}',1)"><i class="fa-solid fa-plus"></i></button>
+                <button class="qty-plus" onclick="event.stopPropagation();adjust('${item.key}',1)" style="${item.qty >= 24 ? 'display:none' : ''}"><i class="fa-solid fa-plus"></i></button>
               </div>
               <div class="cart-subtotal">€${(item.price * item.qty).toFixed(2)}</div>
             </div>
@@ -375,13 +375,17 @@
           icon: itemIcon(item, section)
         };
       }
-      cart[key].qty = Math.max(0, cart[key].qty + delta);
+      cart[key].qty = Math.max(0, Math.min(24, cart[key].qty + delta));
       if (cart[key].qty === 0) delete cart[key];
 
-      // Update inline counters in content
+      // Update inline counters and buttons in content
       const safeKey = CSS.escape(key.replace(/::/g, '-'));
       const qtyEl = document.getElementById('qty-' + safeKey);
       if (qtyEl) qtyEl.textContent = cart[key] ? cart[key].qty : 0;
+      const minusBtn = document.getElementById('btn-minus-' + safeKey);
+      if (minusBtn) minusBtn.style.display = (!cart[key] || cart[key].qty <= 0) ? 'none' : '';
+      const plusBtn = document.getElementById('btn-plus-' + safeKey);
+      if (plusBtn) plusBtn.style.display = (cart[key] && cart[key].qty >= 24) ? 'none' : '';
 
       renderCart();
     }
