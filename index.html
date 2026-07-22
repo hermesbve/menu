@@ -316,20 +316,17 @@
         return;
       }
 
-      // Group by section
-      const bySection = {};
-      entries.forEach(([key, v]) => {
-        if (!bySection[v.sectionId]) bySection[v.sectionId] = { name: v.sectionName, items: [] };
-        bySection[v.sectionId].items.push({ key, ...v });
-      });
-
       let total = 0;
       let html = '';
-      for (const [secId, sec] of Object.entries(bySection)) {
-              const menuSection = activeSections.find(s => s.id === secId);
-      const totalItems = menuSection ? menuSection.items.length : 0;
-      html += `<div class="cart-section-title">${sec.name} (${totalItems})</div>`;
-        sec.items.forEach(item => {
+      for (const menuSec of activeSections) {
+        const secItems = entries
+          .filter(([_, v]) => v.sectionId === menuSec.id)
+          .map(([key, v]) => ({ key, ...v }));
+        if (secItems.length === 0) continue;
+        secItems.sort((a, b) => a.name.localeCompare(b.name));
+        const itemCount = secItems.reduce((s, i) => s + i.qty, 0);
+        html += `<div class="cart-section-title">${menuSec.section} (${itemCount})</div>`;
+        secItems.forEach(item => {
           total += item.price * item.qty;
           html += `
             <div class="cart-item" data-key="${item.key}" onclick="adjust('${item.key}',1)">
