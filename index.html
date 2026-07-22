@@ -107,6 +107,7 @@
       border-radius: var(--radius-sm);
       margin-bottom: 8px;
     }
+    .item-card.disabled { opacity: 0.35; pointer-events: none; }
     .item-icon {
       width: 40px; height: 40px; flex-shrink: 0;
       border-radius: var(--radius-sm);
@@ -308,6 +309,14 @@
       }
     ];
 
+    // ── Filter out disabled sections & items ───────────────────────
+    const activeSections = menuSections
+      .filter(s => !s.disabled)
+      .map(s => ({
+        ...s,
+        items: s.items.filter(i => !i.disabled)
+      }));
+
     // ── State ──────────────────────────────────────────────────────
     const cart = {}; // { itemKey: { name, price, qty, sectionId, sectionName, icon } }
 
@@ -317,7 +326,7 @@
 
     function renderTabs() {
       const el = document.getElementById('tabs');
-      el.innerHTML = menuSections.map(s =>
+      el.innerHTML = activeSections.map(s =>
         `<button class="tab-btn" data-section="${s.id}" onclick="scrollToSection('${s.id}')">
           <i class="${s.icon}"></i> ${s.section}
         </button>`
@@ -326,7 +335,7 @@
 
     function renderContent() {
       const el = document.getElementById('content');
-      el.innerHTML = menuSections.map(s => `
+      el.innerHTML = activeSections.map(s => `
         <div class="section-title" id="sec-${s.id}"><i class="${s.icon}"></i> ${s.section}</div>
         ${s.items.map(item => {
           const key = getItemKey(s.id, item.name);
@@ -408,7 +417,7 @@
       const parts = key.split('::');
       const sectionId = parts[0];
       const itemName = parts.slice(1).join('::');
-      const section = menuSections.find(s => s.id === sectionId);
+      const section = activeSections.find(s => s.id === sectionId);
       const item = section.items.find(i => i.name === itemName);
 
       if (!cart[key]) {
@@ -435,7 +444,6 @@
     function scrollToSection(id) {
       const el = document.getElementById('sec-' + id);
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      // Update active tab
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.section === id));
     }
 
@@ -465,7 +473,7 @@
           }
         });
       }, options);
-      menuSections.forEach(s => {
+      activeSections.forEach(s => {
         const el = document.getElementById('sec-' + s.id);
         if (el) observer.observe(el);
       });
@@ -477,8 +485,12 @@
     updateBadge();
     setupObserver();
 
-    // If Jekyll is enabled (GitHub Pages), _data/menu.yaml feeds this JS.
-    // The embedded data above keeps it working as a plain static page too.
+    // Usage: set disabled: true on a section or item to hide it.
+    // Sections with disabled: true are fully excluded (no tab, no content).
+    // Items with disabled: true are excluded from their section.
+    // Examples:
+    //   { section: "Spirits", disabled: true, ... }     ← hides entire section
+    //   { name: "Duvel", disabled: true, ... }          ← hides single item
   </script>
 </body>
 </html>
