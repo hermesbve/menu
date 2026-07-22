@@ -21,6 +21,7 @@ sections:
         description: "Classic Belgian pilsner, crisp & refreshing"
       - name: "Grimbergen Blonde"
         price: 4.00
+        icon: "fa-solid fa-hand-point-right"
         description: "Abbey beer, 6.5% — fruity & smooth"
       - name: "Duvel"
         price: 4.50
@@ -66,6 +67,7 @@ sections:
       - name: "Piña Colada"
         price: 8.50
         description: "Rum, pineapple, coconut cream"
+        disabled: true
       - name: "Negroni"
         price: 8.00
         description: "Gin, Campari, sweet vermouth"
