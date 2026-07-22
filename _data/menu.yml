@@ -1,0 +1,117 @@
+# Menu data for menu.f2p.be
+# Sections and items for the digital menu
+
+sections:
+  - section: "Beer"
+    id: "beer"
+    icon: "ti ti-beer"
+    items:
+      - name: "Stella Artois"
+        price: 3.50
+        icon: "ti ti-beer"
+        description: "Classic Belgian pilsner, crisp & refreshing"
+      - name: "Grimbergen Blonde"
+        price: 4.00
+        description: "Abbey beer, 6.5% — fruity & smooth"
+      - name: "Duvel"
+        price: 4.50
+        description: "Strong golden ale, 8.5% — iconic Belgian"
+      - name: "Leffe Brune"
+        price: 4.00
+        description: "Dark abbey beer, caramel & spices"
+      - name: "Jupiler"
+        price: 3.00
+        description: "Light pilsner, easy drinking"
+
+  - section: "Wine"
+    id: "wine"
+    icon: "ti ti-glass"
+    items:
+      - name: "Merlot (glass)"
+        price: 5.00
+        description: "Full-bodied red, smooth finish"
+      - name: "Sauvignon Blanc (glass)"
+        price: 5.00
+        description: "Crisp white, citrus notes"
+      - name: "Rosé (glass)"
+        price: 4.50
+        description: "Light & fruity, perfect summer wine"
+      - name: "Cava Brut (glass)"
+        price: 5.50
+        description: "Spanish sparkling, dry & elegant"
+
+  - section: "Cocktails"
+    id: "cocktails"
+    icon: "ti ti-cocktail"
+    items:
+      - name: "Mojito"
+        price: 8.00
+        icon: "ti ti-cocktail"
+        description: "Rum, mint, lime, soda — classic refresher"
+      - name: "Gin Tonic"
+        price: 7.50
+        description: "Premium gin with Mediterranean tonic"
+      - name: "Espresso Martini"
+        price: 9.00
+        description: "Vodka, espresso, coffee liqueur"
+      - name: "Piña Colada"
+        price: 8.50
+        description: "Rum, pineapple, coconut cream"
+      - name: "Negroni"
+        price: 8.00
+        description: "Gin, Campari, sweet vermouth"
+
+  - section: "Soft Drinks"
+    id: "soft"
+    icon: "ti ti-bottle"
+    items:
+      - name: "Coca-Cola"
+        price: 2.50
+        description: "Ice-cold classic cola"
+      - name: "Ice Tea Peach"
+        price: 2.50
+        description: "Refreshing peach iced tea"
+      - name: "Spa Blauw"
+        price: 2.00
+        description: "Still mineral water"
+      - name: "Spa Rood"
+        price: 2.00
+        description: "Sparkling mineral water"
+      - name: "Fresh Orange Juice"
+        price: 3.50
+        description: "Freshly squeezed orange juice"
+
+  - section: "Spirits"
+    id: "spirits"
+    icon: "ti ti-martini"
+    items:
+      - name: "Whisky (Johnnie Walker)"
+        price: 6.00
+        description: "Black Label, served neat or on rocks"
+      - name: "Vodka (Absolut)"
+        price: 5.00
+        description: "Pure & smooth, great for mixers"
+      - name: "Rum (Bacardi)"
+        price: 5.00
+        description: "White rum, light & versatile"
+      - name: "Jenever (Hasselt)"
+        price: 4.50
+        description: "Traditional Belgian gin — ice cold"
+
+  - section: "Hot Drinks"
+    id: "hot"
+    icon: "ti ti-coffee"
+    items:
+      - name: "Coffee"
+        price: 2.50
+        icon: "ti ti-coffee"
+        description: "Freshly brewed filter coffee"
+      - name: "Cappuccino"
+        price: 3.00
+        description: "Espresso with steamed milk foam"
+      - name: "Tea"
+        price: 2.50
+        description: "Choice of herbal, green, or black"
+      - name: "Hot Chocolate"
+        price: 3.50
+        description: "Rich Belgian hot chocolate with cream"

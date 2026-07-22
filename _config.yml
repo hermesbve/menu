@@ -1,0 +1,29 @@
+# Jekyll Configuration for menu.f2p.be
+# GitHub Pages remote theme
+
+remote_theme: "mmistakes/minimal-mistakes@4.26.2"
+
+# Site settings
+title: "Menu"
+description: "Digital menu"
+url: "https://menu.f2p.be"
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor/
+
+# Plugins
+plugins:
+  - jekyll-include-cache
+  - jekyll-data
+
+# Minima theme is default; we use remote_theme, but keep defaults
+# to avoid build warnings
+theme: null
