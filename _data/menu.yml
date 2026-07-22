@@ -4,11 +4,11 @@
 sections:
   - section: "Beer"
     id: "beer"
-    icon: "ti ti-beer"
+    icon: "fa-solid fa-beer"
     items:
       - name: "Stella Artois"
         price: 3.50
-        icon: "ti ti-beer"
+        icon: "fa-solid fa-beer"
         description: "Classic Belgian pilsner, crisp & refreshing"
       - name: "Grimbergen Blonde"
         price: 4.00
@@ -25,7 +25,7 @@ sections:
 
   - section: "Wine"
     id: "wine"
-    icon: "ti ti-glass"
+    icon: "fa-solid fa-wine-glass"
     items:
       - name: "Merlot (glass)"
         price: 5.00
@@ -42,11 +42,11 @@ sections:
 
   - section: "Cocktails"
     id: "cocktails"
-    icon: "ti ti-cocktail"
+    icon: "fa-solid fa-cocktail"
     items:
       - name: "Mojito"
         price: 8.00
-        icon: "ti ti-cocktail"
+        icon: "fa-solid fa-cocktail"
         description: "Rum, mint, lime, soda — classic refresher"
       - name: "Gin Tonic"
         price: 7.50
@@ -63,7 +63,7 @@ sections:
 
   - section: "Soft Drinks"
     id: "soft"
-    icon: "ti ti-bottle"
+    icon: "fa-solid fa-bottle-water"
     items:
       - name: "Coca-Cola"
         price: 2.50
@@ -83,7 +83,7 @@ sections:
 
   - section: "Spirits"
     id: "spirits"
-    icon: "ti ti-martini"
+    icon: "fa-solid fa-whiskey-glass"
     items:
       - name: "Whisky (Johnnie Walker)"
         price: 6.00
@@ -100,11 +100,11 @@ sections:
 
   - section: "Hot Drinks"
     id: "hot"
-    icon: "ti ti-coffee"
+    icon: "fa-solid fa-mug-saucer"
     items:
       - name: "Coffee"
         price: 2.50
-        icon: "ti ti-coffee"
+        icon: "fa-solid fa-mug-saucer"
         description: "Freshly brewed filter coffee"
       - name: "Cappuccino"
         price: 3.00
