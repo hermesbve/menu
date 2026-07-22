@@ -167,10 +167,6 @@
     }
     .cart-drawer.open { opacity: 1; pointer-events: auto; }
 
-    .cart-handle {
-      width: 36px; height: 4px; border-radius: 2px;
-      background: var(--border); margin: 0 auto 16px;
-    }
     .cart-header {
       display: flex; justify-content: space-between; align-items: center;
       margin-bottom: 16px;
@@ -240,7 +236,6 @@
 
   <!-- Cart Drawer -->
   <div class="cart-drawer" id="cartDrawer">
-    <div class="cart-handle"></div>
     <div class="cart-header">
       <h2>{{ site.cart_title | default: "Shopping Cart" }}</h2>
       <button class="cart-close" id="cartClose"><i class="fa-solid fa-xmark"></i></button>
