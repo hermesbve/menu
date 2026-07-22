@@ -415,6 +415,34 @@
     }
 
     // ── Actions ────────────────────────────────────────────────────
+    function adjust(key, delta) {
+      const parts = key.split('::');
+      const sectionId = parts[0];
+      const itemName = parts.slice(1).join('::');
+      const section = activeSections.find(s => s.id === sectionId);
+      const item = section.items.find(i => i.name === itemName);
+
+      if (!cart[key]) {
+        cart[key] = {
+          name: item.name,
+          price: item.price,
+          qty: 0,
+          sectionId: section.id,
+          sectionName: section.section,
+          icon: itemIcon(item, section)
+        };
+      }
+      cart[key].qty = Math.max(0, cart[key].qty + delta);
+      if (cart[key].qty === 0) delete cart[key];
+
+      // Update inline counters in content
+      const safeKey = CSS.escape(key.replace(/::/g, '-'));
+      const qtyEl = document.getElementById('qty-' + safeKey);
+      if (qtyEl) qtyEl.textContent = cart[key] ? cart[key].qty : 0;
+
+      renderCart();
+    }
+
     function scrollTabIntoView(id) {
       const btn = document.querySelector(`.tab-btn[data-section="${id}"]`);
       if (btn) btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
