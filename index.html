@@ -46,7 +46,7 @@
       background: var(--bg-card);
       border-bottom: 1px solid var(--border);
     }
-    .top-bar .logo { font-size: 1.15rem; font-weight: 700; color: var(--text-heading); }
+    .top-bar .logo { font-size: 1.15rem; font-weight: 700; color: var(--text-heading); cursor: pointer; }
     .cart-btn {
       position: relative;
       background: none; border: none; color: var(--text);
@@ -216,7 +216,7 @@
 
   <!-- Top Bar -->
   <header class="top-bar">
-    <span class="logo">menu</span>
+    <span class="logo" onclick="resetCart()">menu</span>
     <button class="cart-btn" id="cartBtn" aria-label="Shopping cart">
       <i class="fa-solid fa-cart-shopping"></i>
       <span class="cart-badge" id="cartBadge">0</span>
@@ -259,6 +259,13 @@
 
     // ── State ──────────────────────────────────────────────────────
     const cart = {}; // { itemKey: { name, price, qty, sectionId, sectionName, icon } }
+
+    function resetCart() {
+      Object.keys(cart).forEach(k => delete cart[k]);
+      renderContent();
+      updateBadge();
+      closeCart();
+    }
 
     // ── Render Helpers ─────────────────────────────────────────────
     function getItemKey(sectionId, itemName) { return sectionId + '::' + itemName; }
