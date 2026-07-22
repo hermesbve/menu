@@ -175,6 +175,7 @@
     .cart-header h2 { font-size: 1.1rem; font-weight: 700; color: var(--text-heading); }
     .cart-total {
       font-size: 1.2rem; font-weight: 700; color: var(--green);
+      margin-bottom: 20px;
     }
     .cart-close {
       background: none; border: none; color: var(--text-muted);
@@ -218,10 +219,13 @@
   <!-- Top Bar -->
   <header class="top-bar">
     <span class="logo" onclick="resetCart()">menu</span>
-    <button class="cart-btn" id="cartBtn" aria-label="Shopping cart">
-      <i class="fa-solid fa-cart-shopping"></i>
-      <span class="cart-badge" id="cartBadge">0</span>
-    </button>
+    <div style="display:flex;align-items:center;gap:8px">
+      <span id="headerCartTotal" onclick="openCart()" style="font-size:0.85rem;font-weight:700;color:var(--green);cursor:pointer;min-width:40px;text-align:right">€0.00</span>
+      <button class="cart-btn" id="cartBtn" aria-label="Shopping cart">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+    </div>
   </header>
 
   <!-- Section Tabs -->
@@ -358,6 +362,10 @@
       const badge = document.getElementById('cartBadge');
       badge.textContent = total;
       badge.classList.toggle('show', total > 0);
+
+      const price = Object.values(cart).reduce((sum, v) => sum + v.price * v.qty, 0);
+      const headerTotal = document.getElementById('headerCartTotal');
+      if (headerTotal) headerTotal.textContent = `€${price.toFixed(2)}`;
     }
 
     // ── Actions ────────────────────────────────────────────────────
