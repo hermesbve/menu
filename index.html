@@ -185,10 +185,11 @@
     }
 
     .cart-empty {
-      text-align: center; padding: 32px 0;
-      color: var(--text-muted); font-size: 0.85rem;
+      text-align: center; padding: 48px 16px;
+      color: var(--text-muted); font-size: 0.95rem;
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
     }
-    .cart-empty i { font-size: 2rem; margin-bottom: 8px; display: block; }
+    .cart-empty i { font-size: 2.5rem; }
 
     .cart-section-title {
       font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
@@ -251,6 +252,7 @@
   <script>
     // ── Menu Data (from _data/menu.yml) ──────────────────────────
     const menuSections = {{ site.data.menu.sections | jsonify }};
+    const emptyCartText = {{ site.empty_cart_text | default: "Your cart is empty" | jsonify }};
 
     // ── Filter out disabled sections & items ───────────────────────
     const activeSections = menuSections
@@ -279,7 +281,7 @@
     function renderContent() {
       const el = document.getElementById('content');
       el.innerHTML = activeSections.map(s => `
-        <div class="section-title" id="sec-${s.id}"><i class="${s.icon}"></i> ${s.section} <span style="color:var(--text-muted);font-size:0.75rem;font-weight:400">(${s.items.length})</span></div>
+        <div class="section-title" id="sec-${s.id}"><i class="${s.icon}"></i> ${s.section} </div>
         ${s.items.map(item => {
           const key = getItemKey(s.id, item.name);
           const icon = itemIcon(item, s);
@@ -308,7 +310,7 @@
       const entries = Object.entries(cart).filter(([_, v]) => v.qty > 0);
 
       if (entries.length === 0) {
-        itemsEl.innerHTML = '<div class="cart-empty"><i class="fa-solid fa-cart-shopping-off"></i>Your cart is empty</div>';
+        itemsEl.innerHTML = '<div class="cart-empty"><i class="fa-solid fa-cart-shopping"></i><span id="emptyCartText"></span></div>';
         totalEl.textContent = '€0.00';
         updateBadge();
         return;
@@ -324,7 +326,9 @@
       let total = 0;
       let html = '';
       for (const [secId, sec] of Object.entries(bySection)) {
-        html += `<div class="cart-section-title">${sec.name}</div>`;
+              const menuSection = activeSections.find(s => s.id === secId);
+      const totalItems = menuSection ? menuSection.items.length : 0;
+      html += `<div class="cart-section-title">${sec.name} (${totalItems})</div>`;
         sec.items.forEach(item => {
           total += item.price * item.qty;
           html += `
@@ -431,6 +435,7 @@
     }
 
     // ── Init ───────────────────────────────────────────────────────
+    document.getElementById('emptyCartText').textContent = emptyCartText;
     renderTabs();
     renderContent();
     updateBadge();
