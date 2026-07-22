@@ -294,8 +294,8 @@
                 <div class="item-desc">${item.description || ''}</div>
               </div>
               <div class="item-actions">
-                <button class="qty-minus" id="btn-minus-${CSS.escape(key.replace(/::/g,'-'))}" onclick="event.stopPropagation();adjust('${key}',-1)" style="${qty === 0 ? 'display:none' : ''}"><i class="fa-solid fa-minus"></i></button>
-                <span class="qty" id="qty-${CSS.escape(key.replace(/::/g,'-'))}">${qty}</span>
+                <button class="qty-minus" id="btn-minus-${CSS.escape(key.replace(/::/g,'-'))}" onclick="event.stopPropagation();adjust('${key}',-1)" style="${qty === 0 ? 'visibility:hidden' : ''}"><i class="fa-solid fa-minus"></i></button>
+                <span class="qty" id="qty-${CSS.escape(key.replace(/::/g,'-'))}" style="${qty === 0 ? 'visibility:hidden' : ''}">${qty}</span>
                 <button class="qty-plus" id="btn-plus-${CSS.escape(key.replace(/::/g,'-'))}" onclick="event.stopPropagation();adjust('${key}',1)" style="${qty >= 24 ? 'display:none' : ''}"><i class="fa-solid fa-plus"></i></button>
               </div>
             </div>
@@ -383,7 +383,9 @@
       const qtyEl = document.getElementById('qty-' + safeKey);
       if (qtyEl) qtyEl.textContent = cart[key] ? cart[key].qty : 0;
       const minusBtn = document.getElementById('btn-minus-' + safeKey);
-      if (minusBtn) minusBtn.style.display = (!cart[key] || cart[key].qty <= 0) ? 'none' : '';
+      if (minusBtn) minusBtn.style.visibility = (!cart[key] || cart[key].qty <= 0) ? 'hidden' : '';
+      const qtyEl2 = document.getElementById('qty-' + safeKey);
+      if (qtyEl2) qtyEl2.style.visibility = (!cart[key] || cart[key].qty <= 0) ? 'hidden' : '';
       const plusBtn = document.getElementById('btn-plus-' + safeKey);
       if (plusBtn) plusBtn.style.display = (cart[key] && cart[key].qty >= 24) ? 'none' : '';
 
