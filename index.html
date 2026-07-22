@@ -365,7 +365,10 @@
 
       const price = Object.values(cart).reduce((sum, v) => sum + v.price * v.qty, 0);
       const headerTotal = document.getElementById('headerCartTotal');
-      if (headerTotal) headerTotal.textContent = `€${price.toFixed(2)}`;
+      if (headerTotal) {
+        headerTotal.textContent = `€${price.toFixed(2)}`;
+        headerTotal.style.display = price === 0 ? 'none' : '';
+      }
     }
 
     // ── Actions ────────────────────────────────────────────────────
