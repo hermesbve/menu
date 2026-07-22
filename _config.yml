@@ -21,3 +21,7 @@ exclude:
 plugins:
   - jekyll-include-cache
   - jekyll-data
+
+
+# Cart settings
+cart_title: "Shopping Cart"
